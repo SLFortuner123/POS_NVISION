@@ -9,6 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red">#E30B0B</color>
     <color name="offwhite">#BDBABA</color>
+    <color name="offwhite2">#39BDBABA</color>
     <color name="btn_white">#F3EBEB</color>
     <color name="transparent">#66FFFFFF</color>
 </resources>

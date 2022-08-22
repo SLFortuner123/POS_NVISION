@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.ProductListFragment">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?actionBarSize"
+        android:theme="?actionBarTheme"
+        android:background="@color/design_default_color_primary">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text = "Products"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            />
+    </androidx.appcompat.widget.Toolbar>
+
+<ListView
+    android:id="@+id/recyclerViewProducts"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="?actionBarSize"/>
+
+</FrameLayout>

@@ -132,6 +132,7 @@ public class CartAddItems extends AppCompatActivity implements LoaderManager.Loa
                     int itemPrice = basePrice * quantity;
                     String setnewPrice = String.valueOf( itemPrice );
                     itemTotalPrice.setText( setnewPrice );
+
                 }
             }
         } );

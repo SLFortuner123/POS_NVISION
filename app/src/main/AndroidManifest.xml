@@ -11,39 +11,47 @@
         android:supportsRtl="false"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Summary"
-            android:parentActivityName=".CartAddItems"
+            android:name=".MainActivity2"
             android:exported="false" />
+        <activity
+            android:name=".NewSaleNavgationDrw"
+            android:exported="false" />
+        <activity
+            android:name=".NewSale2"
+            android:exported="false" />
+        <activity
+            android:name=".Summary"
+            android:exported="false"
+            android:parentActivityName=".CartAddItems" />
         <activity
             android:name=".CartAddItems"
             android:exported="false"
-            android:parentActivityName=".fragments.ReportFragment"
+            android:parentActivityName=".newsale.NewSaleNavigationDrawer"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".fragments.ProductFragment"
+            android:name=".fragments.ProductNavigationDrawerFragment"
             android:exported="false"
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="Instantiatable" />
         <activity
-            android:name=".fragments.ReportFragment"
+            android:name=".newsale.NewSaleNavigationDrawer"
             android:exported="false"
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="Instantiatable" />
-
         <activity
-            android:name=".EditProductsActivity"
+            android:name=".abandoneds.EditProductsActivity"
+            android:exported="false"
             android:parentActivityName=".ProductListActivity"
-            android:exported="false"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ProductListActivity"
-            android:parentActivityName=".fragments.ProductFragment"
             android:exported="false"
+            android:parentActivityName=".fragments.ProductNavigationDrawerFragment"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".NewSale"
-            android:parentActivityName=".fragments.ReportFragment"
+            android:name=".newsale.NewSale"
             android:exported="false"
+            android:parentActivityName=".newsale.NewSaleNavigationDrawer"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MainActivity"

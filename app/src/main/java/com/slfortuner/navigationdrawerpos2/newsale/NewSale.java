@@ -1,4 +1,4 @@
-package com.slfortuner.navigationdrawerpos2;
+package com.slfortuner.navigationdrawerpos2.newsale;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -10,6 +10,10 @@ import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
+import com.slfortuner.navigationdrawerpos2.CartAddItems;
+import com.slfortuner.navigationdrawerpos2.R;
+import com.slfortuner.navigationdrawerpos2.SQLManager;
+import com.slfortuner.navigationdrawerpos2.Summary;
 import com.slfortuner.navigationdrawerpos2.adapters.ProductAdapter;
 import com.slfortuner.navigationdrawerpos2.models.Products;
 
@@ -33,17 +37,17 @@ public class NewSale extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled( true );
 ////where the listview values pass to CartAdditem activity////////////////////////////////////////////////////
-        productListView.setOnItemClickListener( new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Products selectedProducts = (Products) productListView.getItemAtPosition( i );
-                Intent addProductIntent = new Intent(getApplicationContext(), CartAddItems.class);
-                addProductIntent.putExtra( Products.PRODUCT_EDIT_EXTRA, selectedProducts.getId() );
-                startActivity( addProductIntent );
-
-            }
-        } );
-        
+//        productListView.setOnItemClickListener( new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                Products selectedProducts = (Products) productListView.getItemAtPosition( i );
+//                Intent addProductIntent = new Intent(getApplicationContext(), CartAddItems.class);
+//                addProductIntent.putExtra( Products.PRODUCT_EDIT_EXTRA, selectedProducts.getId() );
+//                startActivity( addProductIntent );
+//
+//            }
+//        } );
+//
   /////////////NewSale to cart activity////////////////////////////////////////////////////////////////////////
         toCart = findViewById( R.id.shoppingCart);
         toCart.setOnClickListener( new View.OnClickListener() {
