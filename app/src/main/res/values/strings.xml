@@ -9,9 +9,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="save">save</string>
-    <string name="create_products">Create products</string>
+    <string name="create_products">Create productsModel</string>
     <string name="delete">Delete</string>
-    <string name="products">&#032;&#032;Products</string>
+    <string name="productsModel">&#032;&#032;Products</string>
     <string name="reports">Reports</string>
     <string name="add">Add to cart</string>
     <string name="quantity">Quantity</string>

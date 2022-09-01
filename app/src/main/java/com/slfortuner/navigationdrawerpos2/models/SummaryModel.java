@@ -1,14 +1,20 @@
-package com.slfortuner.navigationdrawerpos2.summaryList;
+package com.slfortuner.navigationdrawerpos2.models;
 
-/**
- * Created by Mitch on 2016-05-13.
- */
-public class User {
+
+import com.slfortuner.navigationdrawerpos2.summaryList.Summary;
+
+import java.util.ArrayList;
+
+public class SummaryModel {
+
     private String FirstName;
     private String LastName;
     private String FavFood;
 
-    public User(String fName,String lName, String fFood){
+
+
+    public SummaryModel(String fName, String lName, String fFood){
+
         FirstName = fName;
         LastName = lName;
         FavFood = fFood;

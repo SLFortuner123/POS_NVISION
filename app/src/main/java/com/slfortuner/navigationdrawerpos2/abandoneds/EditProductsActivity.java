@@ -3,22 +3,18 @@ package com.slfortuner.navigationdrawerpos2.abandoneds;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.slfortuner.navigationdrawerpos2.R;
-import com.slfortuner.navigationdrawerpos2.models.Products;
-
-import java.util.Date;
+import com.slfortuner.navigationdrawerpos2.models.ProductsModel;
 
 public class EditProductsActivity extends AppCompatActivity {
 
     private EditText nameEditText, priceEditText, codeEditText;
     private Button deleteButton;
-    private Products selectedProducts;
+    private ProductsModel selectedProductsModel;
 
 
     @Override
@@ -46,13 +42,13 @@ public class EditProductsActivity extends AppCompatActivity {
 //    private void checkForEditProducts() {
 //        Intent previousIntent = getIntent();
 //
-//        int passedProductID = previousIntent.getIntExtra( Products.PRODUCT_EDIT_EXTRA, -1 );
-//        selectedProducts = Products.getProductForID( passedProductID );
+//        int passedProductID = previousIntent.getIntExtra( ProductsModel.PRODUCT_EDIT_EXTRA, -1 );
+//        selectedProductsModel = ProductsModel.getProductForID( passedProductID );
 //
-//        if (selectedProducts != null) {
-//            nameEditText.setText( selectedProducts.getName() );
-//            priceEditText.setText( selectedProducts.getPrice() );
-//            codeEditText.setText( selectedProducts.getCode() );
+//        if (selectedProductsModel != null) {
+//            nameEditText.setText( selectedProductsModel.getName() );
+//            priceEditText.setText( selectedProductsModel.getPrice() );
+//            codeEditText.setText( selectedProductsModel.getCode() );
 //        }
 //        else
 //        {
@@ -63,26 +59,26 @@ public class EditProductsActivity extends AppCompatActivity {
 //
 //    public void saveProduct(View view) {
 //
-//        SQLManager sqlManager = SQLManager.instanceOfDatabase( this );
+//        ProductListDatabseHelper sqlManager = ProductListDatabseHelper.instanceOfDatabase( this );
 //
 //        String name = String.valueOf( nameEditText.getText() );
 //        String price = String.valueOf( priceEditText.getText() );
 //        String code = String.valueOf( codeEditText.getText() );
 //
-//        if (selectedProducts == null) {
+//        if (selectedProductsModel == null) {
 //
-//            int id = Products.productsArrayList.size();
-//            Products newProducts = new Products( id, name, price, code );
-//            Products.productsArrayList.add( newProducts );
+//            int id = ProductsModel.productsModelArrayList.size();
+//            ProductsModel newProducts = new ProductsModel( id, name, price, code );
+//            ProductsModel.productsModelArrayList.add( newProducts );
 //            sqlManager.addProductsToDatabase( newProducts );
 //
 //
 //
 //        } else {
-//            selectedProducts.setName( name );
-//            selectedProducts.setPrice( price );
-//            selectedProducts.setCode( code );
-//            sqlManager.updateProductInDB( selectedProducts );
+//            selectedProductsModel.setName( name );
+//            selectedProductsModel.setPrice( price );
+//            selectedProductsModel.setCode( code );
+//            sqlManager.updateProductInDB( selectedProductsModel );
 //        }
 //
 //        finish();
@@ -92,9 +88,9 @@ public class EditProductsActivity extends AppCompatActivity {
 
 //    public void deleteProduct(View view)
 //    {
-//        selectedProducts.setDeleted( new Date () );
-//        SQLManager sqlManager = SQLManager.instanceOfDatabase( this );
-//        sqlManager.updateProductInDB( selectedProducts );
+//        selectedProductsModel.setDeleted( new Date () );
+//        ProductListDatabseHelper sqlManager = ProductListDatabseHelper.instanceOfDatabase( this );
+//        sqlManager.updateProductInDB( selectedProductsModel );
 //        finish();
 //
 //    }

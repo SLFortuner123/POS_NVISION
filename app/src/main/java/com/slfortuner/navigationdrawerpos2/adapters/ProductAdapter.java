@@ -8,16 +8,16 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.slfortuner.navigationdrawerpos2.R;
-import com.slfortuner.navigationdrawerpos2.models.Products;
+import com.slfortuner.navigationdrawerpos2.models.ProductsModel;
 
 import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-public class ProductAdapter extends ArrayAdapter<Products> {
+public class ProductAdapter extends ArrayAdapter<ProductsModel> {
 
-    public ProductAdapter(Context context, List<Products> products)
+    public ProductAdapter(Context context, List<ProductsModel> products)
     {
         super(context,0, products);
     }
@@ -26,7 +26,7 @@ public class ProductAdapter extends ArrayAdapter<Products> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-        Products products = getItem( position );
+        ProductsModel productsModel = getItem( position );
         if (convertView == null)
             convertView = LayoutInflater.from( getContext()).inflate( R.layout.product_cell, parent, false);
 
@@ -35,9 +35,9 @@ public class ProductAdapter extends ArrayAdapter<Products> {
         TextView code = convertView.findViewById( R.id.cellCode);
 
 
-        name.setText( products.getName() );
-        price.setText( products.getPrice() );
-        code.setText( products.getCode() );
+        name.setText( productsModel.getName() );
+        price.setText( productsModel.getPrice() );
+        code.setText( productsModel.getCode() );
 
         return convertView;
     }

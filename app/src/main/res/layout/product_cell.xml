@@ -1,36 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:orientation="horizontal"
     android:padding="15dp"
-    android:layout_height="100dp">
+    android:weightSum="100">
 
-    <TextView
-        android:id="@+id/cellName"
+    <LinearLayout
+        android:layout_gravity="center"
+        android:layout_weight="50"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Product name"
-        android:maxLines="1"
-        android:textSize="20sp"/>
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/cellPrice"
+        <TextView
+            android:id="@+id/cellName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:text="Product name"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/cellCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:maxLines="1"
+                android:text="Product code"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_gravity="center"
+        android:layout_weight="50"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Price"
-        android:layout_gravity="end"
-        android:maxLines="1"
-        android:textSize="15sp"/>
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/cellCode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top"
-        android:text="Product code"
-        android:maxLines="1"
-        android:textSize="15sp"/>
+        <TextView
+            android:id="@+id/cellPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+           android:layout_gravity="end"
+            android:maxLines="1"
+            android:text="Price"
+            android:textSize="15sp" />
+
+
+    </LinearLayout>
 
 </LinearLayout>

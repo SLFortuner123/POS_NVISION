@@ -6,4 +6,101 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity2">
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar21"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="?actionBarSize"
+            android:theme="?actionBarTheme"
+            android:background="@color/design_default_color_primary">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text = "@string/create_products"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                />
+
+            <Button
+                android:id="@+id/saveBT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/save"
+                android:textSize="20sp"
+                android:layout_gravity="end"
+                android:background="@color/design_default_color_primary" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Product name"
+            android:textSize="15sp"
+            android:layout_margin="10dp"/>
+
+        <EditText
+            android:id="@+id/nameEdit1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_margin="10dp"
+            android:padding="5dp"
+            android:maxLines="1"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Price"
+            android:textSize="15sp"
+            android:layout_margin="20dp"/>
+
+        <EditText
+            android:id="@+id/priceEdit1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:layout_margin="10dp"
+            android:padding="5dp"
+            android:textSize="18sp"
+            android:maxLines="1"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Product code"
+            android:textSize="15sp"
+            android:layout_margin="20dp"/>
+
+        <EditText
+            android:id="@+id/codeEdit1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_margin="10dp"
+            android:padding="5dp"
+            android:maxLines="1"
+            />
+
+        <Button
+            android:id="@+id/deleteBT1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:text="@string/delete"
+            android:textSize="20sp"
+            android:background="@color/offwhite"
+            android:textColor="@color/red" />
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

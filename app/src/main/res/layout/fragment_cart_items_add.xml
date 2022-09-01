@@ -12,35 +12,35 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbarr"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="?actionBarSize"
-            android:theme="?actionBarTheme"
-            android:background="@color/design_default_color_primary">
+<!--        <androidx.appcompat.widget.Toolbar-->
+<!--            android:id="@+id/toolbarr"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:minHeight="?actionBarSize"-->
+<!--            android:theme="?actionBarTheme"-->
+<!--            android:background="@color/design_default_color_primary">-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text = "Add to cart"
-                android:textSize="20sp"
-                android:textColor="@color/white"
-                />
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text = "Add to cart"-->
+<!--                android:textSize="20sp"-->
+<!--                android:textColor="@color/white"-->
+<!--                />-->
 
 
 
-            <ImageButton
-                android:id="@+id/cartt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="15dp"
-                android:layout_gravity="end"
-                android:background="@color/design_default_color_primary"
-                android:src="@drawable/ic_baseline_shopping_cart_24"
-                />
+<!--            <ImageButton-->
+<!--                android:id="@+id/cartt"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:padding="15dp"-->
+<!--                android:layout_gravity="end"-->
+<!--                android:background="@color/design_default_color_primary"-->
+<!--                android:src="@drawable/ic_baseline_shopping_cart_24"-->
+<!--                />-->
 
-        </androidx.appcompat.widget.Toolbar>
+<!--        </androidx.appcompat.widget.Toolbar>-->
 
 
 

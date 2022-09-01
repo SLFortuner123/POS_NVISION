@@ -3,11 +3,11 @@ package com.slfortuner.navigationdrawerpos2.models;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Products {
+public class ProductsModel {
 
 
 
-    public static ArrayList<Products> productsArrayList = new ArrayList<>();
+    public static ArrayList<ProductsModel> productsModelArrayList = new ArrayList<>();
     public static String PRODUCT_EDIT_EXTRA = "productEdit";
 
     private int id;
@@ -16,7 +16,7 @@ public class Products {
     private String code;
     private Date deleted;
 
-    public Products(int id, String name, String price, String code, Date deleted) {
+    public ProductsModel(int id, String name, String price, String code, Date deleted) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -24,7 +24,7 @@ public class Products {
         this.deleted = deleted;
     }
 
-    public Products(int id, String name, String price, String code) {
+    public ProductsModel(int id, String name, String price, String code) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -32,25 +32,25 @@ public class Products {
         deleted = null;
     }
 
-    public static Products getProductForID(int passedProductID)
+    public static ProductsModel getProductForID(int passedProductID)
     {
-        for (Products products : productsArrayList )
+        for (ProductsModel productsModel : productsModelArrayList)
 
         {
-            if(products.getId() == passedProductID)
-                return products;
+            if(productsModel.getId() == passedProductID)
+                return productsModel;
         }
         return null;
 
     }
 
-    public static ArrayList<Products> nonDeletedProducts()
+    public static ArrayList<ProductsModel> nonDeletedProducts()
     {
-        ArrayList<Products> nonDeleted = new ArrayList<>();
-        for (Products products : productsArrayList)
+        ArrayList<ProductsModel> nonDeleted = new ArrayList<>();
+        for (ProductsModel productsModel : productsModelArrayList)
         {
-            if(products.getDeleted() == null )
-                nonDeleted.add(products);
+            if(productsModel.getDeleted() == null )
+                nonDeleted.add( productsModel );
         }
 
         return nonDeleted;
