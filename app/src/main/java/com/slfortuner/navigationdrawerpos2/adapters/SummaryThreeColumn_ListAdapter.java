@@ -1,4 +1,4 @@
-package com.slfortuner.navigationdrawerpos2.summaryList;
+package com.slfortuner.navigationdrawerpos2.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,18 +8,19 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.slfortuner.navigationdrawerpos2.R;
+import com.slfortuner.navigationdrawerpos2.models.SummaryModel;
 
 import java.util.ArrayList;
 
-public class ThreeColumn_ListAdapter extends ArrayAdapter<User> {
+public class SummaryThreeColumn_ListAdapter extends ArrayAdapter<SummaryModel> {
 
     private LayoutInflater mInflater;
-    private ArrayList<User> users;
+    private ArrayList<SummaryModel> summaryModels;
     private int mViewResourceId;
 
-    public ThreeColumn_ListAdapter(Context context, int textViewResourceId, ArrayList<User> users) {
-        super(context, textViewResourceId, users);
-        this.users = users;
+    public SummaryThreeColumn_ListAdapter(Context context, int textViewResourceId, ArrayList<SummaryModel> summaryModels) {
+        super(context, textViewResourceId, summaryModels );
+        this.summaryModels = summaryModels;
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mViewResourceId = textViewResourceId;
     }
@@ -27,20 +28,20 @@ public class ThreeColumn_ListAdapter extends ArrayAdapter<User> {
     public View getView(int position, View convertView, ViewGroup parent) {
         convertView = mInflater.inflate(mViewResourceId, null);
 
-        User user = users.get(position);
+        SummaryModel summaryModel = summaryModels.get(position);
 
-        if (user != null) {
+        if (summaryModel != null) {
             TextView firstName = (TextView) convertView.findViewById( R.id.textFirstName );
             TextView lastName = (TextView) convertView.findViewById(R.id.textLastName);
             TextView favFood = (TextView) convertView.findViewById(R.id.textFavFood);
             if (firstName != null) {
-                firstName.setText(user.getFirstName());
+                firstName.setText( summaryModel.getFirstName());
             }
             if (lastName != null) {
-                lastName.setText((user.getLastName()));
+                lastName.setText((summaryModel.getLastName()));
             }
             if (favFood != null) {
-                favFood.setText((user.getFavFood()));
+                favFood.setText((summaryModel.getFavFood()));
             }
         }
 

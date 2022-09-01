@@ -20,8 +20,9 @@
             android:name=".NewSale2"
             android:exported="false" />
         <activity
-            android:name=".Summary"
+            android:name=".summaryList.Summary"
             android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".CartAddItems" />
         <activity
             android:name=".CartAddItems"

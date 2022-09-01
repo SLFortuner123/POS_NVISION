@@ -1,4 +1,4 @@
-package com.slfortuner.navigationdrawerpos2;
+package com.slfortuner.navigationdrawerpos2.database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,19 +6,17 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.slfortuner.navigationdrawerpos2.models.Products;
+import com.slfortuner.navigationdrawerpos2.models.ProductsModel;
 
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import javax.security.auth.callback.PasswordCallback;
 
+public class ProductListDatabseHelper extends SQLiteOpenHelper {
 
-public class SQLManager extends SQLiteOpenHelper {
-
-    private static SQLManager sqLManager;
+    private static ProductListDatabseHelper sqLManager;
 
     private static final String DATABASE_NAME = "ProductDB";
     private static final int DATABASE_VERSION = 1;
@@ -35,17 +33,17 @@ public class SQLManager extends SQLiteOpenHelper {
 
 
 
-    public SQLManager(Context context) {
+    public ProductListDatabseHelper(Context context) {
         super( context, DATABASE_NAME, null, DATABASE_VERSION );
     }
 
 
 
 
-    public static SQLManager instanceOfDatabase(Context context)
+    public static ProductListDatabseHelper instanceOfDatabase(Context context)
     {
         if (sqLManager == null)
-            sqLManager = new SQLManager(context) ;
+            sqLManager = new ProductListDatabseHelper(context) ;
 
         return sqLManager;
 
@@ -89,16 +87,16 @@ public class SQLManager extends SQLiteOpenHelper {
  //       }
     }
 
-    public void addProductsToDatabase(Products products)
+    public void addProductsToDatabase(ProductsModel productsModel)
     {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put(ID_FIELD, products.getId());
-        contentValues.put(NAME_FIELD, products.getName());
-        contentValues.put(PRICE_FIELD, products.getPrice());
-        contentValues.put(CODE_FIELD, products.getCode());
-        contentValues.put(DELETED_FIELD, getStringsFromDate(products.getDeleted()));
+        contentValues.put(ID_FIELD, productsModel.getId());
+        contentValues.put(NAME_FIELD, productsModel.getName());
+        contentValues.put(PRICE_FIELD, productsModel.getPrice());
+        contentValues.put(CODE_FIELD, productsModel.getCode());
+        contentValues.put(DELETED_FIELD, getStringsFromDate( productsModel.getDeleted()));
 
         sqLiteDatabase.insert( TABLE_NAME, null, contentValues );
 
@@ -119,8 +117,8 @@ public class SQLManager extends SQLiteOpenHelper {
                     String code = result.getString( 4 );
                     String stringDeleted = result.getString( 5 );
                     Date deleted = getDateFromString( stringDeleted );
-                    Products products = new Products( id, name, price, code, deleted);
-                    Products.productsArrayList.add(products);
+                    ProductsModel productsModel = new ProductsModel( id, name, price, code, deleted);
+                    ProductsModel.productsModelArrayList.add( productsModel );
 
 
 
@@ -130,18 +128,18 @@ public class SQLManager extends SQLiteOpenHelper {
 
     }
 
-    public void updateProductInDB(Products products)
+    public void updateProductInDB(ProductsModel productsModel)
     {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(ID_FIELD, products.getId());
-        contentValues.put(NAME_FIELD, products.getName());
-        contentValues.put(PRICE_FIELD, products.getPrice());
-        contentValues.put(CODE_FIELD, products.getCode());
-        contentValues.put(DELETED_FIELD, getStringsFromDate(products.getDeleted()));
+        contentValues.put(ID_FIELD, productsModel.getId());
+        contentValues.put(NAME_FIELD, productsModel.getName());
+        contentValues.put(PRICE_FIELD, productsModel.getPrice());
+        contentValues.put(CODE_FIELD, productsModel.getCode());
+        contentValues.put(DELETED_FIELD, getStringsFromDate( productsModel.getDeleted()));
 
 
-        sqLiteDatabase.update( TABLE_NAME, contentValues, ID_FIELD + " =?", new String[]{String.valueOf( products.getId())});
+        sqLiteDatabase.update( TABLE_NAME, contentValues, ID_FIELD + " =?", new String[]{String.valueOf( productsModel.getId())});
     }
 
     private String getStringsFromDate(Date date)

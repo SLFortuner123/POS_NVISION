@@ -3,18 +3,13 @@ package com.slfortuner.navigationdrawerpos2;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.FrameLayout;
-import android.widget.ListView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.slfortuner.navigationdrawerpos2.adapters.ProductAdapter;
 import com.slfortuner.navigationdrawerpos2.fragments.AddAndEditProductsFragment;
 import com.slfortuner.navigationdrawerpos2.fragments.ProductListFragment;
-import com.slfortuner.navigationdrawerpos2.models.Products;
 
 public class ProductListActivity extends AppCompatActivity {
 
@@ -65,13 +60,13 @@ public class ProductListActivity extends AppCompatActivity {
 
 //    private void loadFromDBTomMemory() {
 //
-//        SQLManager sqlManager = SQLManager.instanceOfDatabase( this );
+//        ProductListDatabseHelper sqlManager = ProductListDatabseHelper.instanceOfDatabase( this );
 //        sqlManager.populateProductListArray();
 //
 //    }
 //
 //    private void setProductAdapter() {
-//        ProductAdapter productAdapter = new ProductAdapter( getApplicationContext(), Products.nonDeletedProducts() );
+//        ProductAdapter productAdapter = new ProductAdapter( getApplicationContext(), ProductsModel.nonDeletedProducts() );
 //        productListView.setAdapter( productAdapter );
 //
 //    }
@@ -81,9 +76,9 @@ public class ProductListActivity extends AppCompatActivity {
 //        productListView.setOnItemClickListener( new AdapterView.OnItemClickListener() {
 //            @Override
 //            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-//                Products selectedProducts = (Products) productListView.getItemAtPosition( position );
+//                ProductsModel selectedProducts = (ProductsModel) productListView.getItemAtPosition( position );
 //                Intent editProductIntent = new Intent( getApplicationContext(), EditProductsActivity.class );
-//                editProductIntent.putExtra( Products.PRODUCT_EDIT_EXTRA, selectedProducts.getId() );
+//                editProductIntent.putExtra( ProductsModel.PRODUCT_EDIT_EXTRA, selectedProducts.getId() );
 //                startActivity( editProductIntent );
 //
 //            }

@@ -13,9 +13,9 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.slfortuner.navigationdrawerpos2.R;
-import com.slfortuner.navigationdrawerpos2.SQLManager;
+import com.slfortuner.navigationdrawerpos2.database.ProductListDatabseHelper;
 import com.slfortuner.navigationdrawerpos2.adapters.ProductAdapter;
-import com.slfortuner.navigationdrawerpos2.models.Products;
+import com.slfortuner.navigationdrawerpos2.models.ProductsModel;
 
 
 public class ProductListFragment extends Fragment {
@@ -57,13 +57,13 @@ public class ProductListFragment extends Fragment {
 
     private void loadFromDBTomMemory() {
 
-        SQLManager sqlManager = SQLManager.instanceOfDatabase( getContext() );
-        sqlManager.populateProductListArray();
+        ProductListDatabseHelper productListDatabseHelper = ProductListDatabseHelper.instanceOfDatabase( getContext() );
+        productListDatabseHelper.populateProductListArray();
 
     }
 
     private void setProductAdapter() {
-        ProductAdapter productAdapter = new ProductAdapter( getContext(), Products.nonDeletedProducts() );
+        ProductAdapter productAdapter = new ProductAdapter( getContext(), ProductsModel.nonDeletedProducts() );
         productListView.setAdapter( productAdapter );
 
     }
@@ -73,10 +73,10 @@ public class ProductListFragment extends Fragment {
         productListView.setOnItemClickListener( new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Products selectedProducts = (Products) productListView.getItemAtPosition( position );
+                ProductsModel selectedProductsModel = (ProductsModel) productListView.getItemAtPosition( position );
 
                 Bundle bundle = new Bundle();
-                bundle.putInt( Products.PRODUCT_EDIT_EXTRA, selectedProducts.getId() );
+                bundle.putInt( ProductsModel.PRODUCT_EDIT_EXTRA, selectedProductsModel.getId() );
                 AddAndEditProductsFragment addAndEditProductsFragment = new AddAndEditProductsFragment();
                 addAndEditProductsFragment.setArguments( bundle );
                 getActivity().getSupportFragmentManager()
@@ -85,7 +85,7 @@ public class ProductListFragment extends Fragment {
                         .addToBackStack( null )
                         .commit();
 //                Intent editProductIntent = new Intent( getContext(), AddAndEditProductsFragment.class );
-//                editProductIntent.putExtra( Products.PRODUCT_EDIT_EXTRA, selectedProducts.getId() );
+//                editProductIntent.putExtra( ProductsModel.PRODUCT_EDIT_EXTRA, selectedProductsModel.getId() );
 //
 //                startActivity( editProductIntent );
 

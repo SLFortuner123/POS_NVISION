@@ -1,7 +1,6 @@
 package com.slfortuner.navigationdrawerpos2.newsale;
 
 import android.content.Intent;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -14,15 +13,11 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
-import com.slfortuner.navigationdrawerpos2.CartAddItems;
-import com.slfortuner.navigationdrawerpos2.MainActivity;
-import com.slfortuner.navigationdrawerpos2.ProductListActivity;
 import com.slfortuner.navigationdrawerpos2.R;
-import com.slfortuner.navigationdrawerpos2.Summary;
-import com.slfortuner.navigationdrawerpos2.models.Products;
-import com.slfortuner.navigationdrawerpos2.summaryList.DataBaseHelperSummary;
+import com.slfortuner.navigationdrawerpos2.summaryList.Summary;
+import com.slfortuner.navigationdrawerpos2.models.ProductsModel;
+import com.slfortuner.navigationdrawerpos2.database.DataBaseHelperSummary;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,7 +36,7 @@ public class CartItemsAddFragment extends Fragment {
 
     DataBaseHelperSummary myDB;
 
-    private Products selectedProducts;
+    private ProductsModel selectedProductsModel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -60,7 +55,7 @@ public class CartItemsAddFragment extends Fragment {
 
         setPlusQuantity(view);
         setMinusQuantity(view);
-        setToCart1( view );
+//   git push -u -f origin main
         setAddtoCart( view );
         iniWidgets( view );
         checkForEditProducts( view );
@@ -82,24 +77,24 @@ public class CartItemsAddFragment extends Fragment {
         return view;
     }
 
-    private void setToCart1(View view) {
-
-        super.onStart();
-        ImageButton toCart1 = (ImageButton) view.findViewById( R.id.cartt );
-        toCart1.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                getActivity().getSupportFragmentManager()
-//                        .beginTransaction()
-//                        .replace( R.id.frag1, new ProductListFragment() )
-//                        .commit();
-
-                Intent intent = new Intent( getContext(), Summary.class );
-                startActivity( intent );
-            }
-        } );
-
-    }
+//    private void setToCart1(View view) {
+//
+//        super.onStart();
+//        ImageButton toCart1 = (ImageButton) view.findViewById( R.id.cartt );
+//        toCart1.setOnClickListener( new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+////                getActivity().getSupportFragmentManager()
+////                        .beginTransaction()
+////                        .replace( R.id.frag1, new ProductListFragment() )
+////                        .commit();
+//
+//                Intent intent = new Intent( getContext(), Summary.class );
+//                startActivity( intent );
+//            }
+//        } );
+//
+//    }
 
     private void setAddtoCart(View view) {
 
@@ -136,7 +131,7 @@ public class CartItemsAddFragment extends Fragment {
         plusQuantity.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int basePrice = Integer.parseInt( String.valueOf( selectedProducts.getPrice() ) );
+                int basePrice = Integer.parseInt( String.valueOf( selectedProductsModel.getPrice() ) );
                 quantity++;
                 displayQuantity();
                 int itemPrice = basePrice * quantity;
@@ -155,7 +150,7 @@ public class CartItemsAddFragment extends Fragment {
         minusQuantity.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int basePrice = Integer.parseInt( String.valueOf( selectedProducts.getPrice() ) );
+                int basePrice = Integer.parseInt( String.valueOf( selectedProductsModel.getPrice() ) );
                 if (quantity == 0) {
 //// make a toast if u wanted
                 }else{
@@ -186,17 +181,17 @@ public class CartItemsAddFragment extends Fragment {
     private void checkForEditProducts(View view) {
         Bundle bundle = this.getArguments();
         if (bundle != null) {
-            int id = getArguments().getInt( Products.PRODUCT_EDIT_EXTRA, -1 );
-            selectedProducts = Products.getProductForID( id );
+            int id = getArguments().getInt( ProductsModel.PRODUCT_EDIT_EXTRA, -1 );
+            selectedProductsModel = ProductsModel.getProductForID( id );
 
         }
 //        Intent previousIntent = getIntent();
 //
-//        int passedProductID = previousIntent.getIntExtra( Products.PRODUCT_EDIT_EXTRA, -1 );
-//        selectedProducts = Products.getProductForID( passedProductID );
+//        int passedProductID = previousIntent.getIntExtra( ProductsModel.PRODUCT_EDIT_EXTRA, -1 );
+//        selectedProductsModel = ProductsModel.getProductForID( passedProductID );
 
-        if (selectedProducts != null) {
-            testRun.setText( selectedProducts.getName() );
+        if (selectedProductsModel != null) {
+            testRun.setText( selectedProductsModel.getName() );
 
         }
 

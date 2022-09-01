@@ -10,17 +10,14 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.slfortuner.navigationdrawerpos2.models.Products;
-import com.slfortuner.navigationdrawerpos2.summaryList.DataBaseHelperSummary;
-
-import org.w3c.dom.Text;
+import com.slfortuner.navigationdrawerpos2.models.ProductsModel;
+import com.slfortuner.navigationdrawerpos2.database.DataBaseHelperSummary;
+import com.slfortuner.navigationdrawerpos2.summaryList.Summary;
 
 public class CartAddItems extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -34,7 +31,7 @@ public class CartAddItems extends AppCompatActivity implements LoaderManager.Loa
 
     DataBaseHelperSummary myDB;
 
-    private Products selectedProducts;
+    private ProductsModel selectedProductsModel;
 
 
     @Override
@@ -108,8 +105,8 @@ public class CartAddItems extends AppCompatActivity implements LoaderManager.Loa
         plusQuantity.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ///////////itemTotalPrice.setText(String.valueOf(selectedProducts.getPrice()));
-                int basePrice = Integer.parseInt( String.valueOf( selectedProducts.getPrice() ) );
+                ///////////itemTotalPrice.setText(String.valueOf(selectedProductsModel.getPrice()));
+                int basePrice = Integer.parseInt( String.valueOf( selectedProductsModel.getPrice() ) );
                 quantity++;
                 displayQuantity();
                 int itemPrice = basePrice * quantity;
@@ -123,7 +120,7 @@ public class CartAddItems extends AppCompatActivity implements LoaderManager.Loa
         minusQuantity.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int basePrice = Integer.parseInt( String.valueOf( selectedProducts.getPrice() ) );
+                int basePrice = Integer.parseInt( String.valueOf( selectedProductsModel.getPrice() ) );
                 if (quantity == 0) {
 //// make a toast if u wanted
                 }else{
@@ -149,11 +146,11 @@ public class CartAddItems extends AppCompatActivity implements LoaderManager.Loa
     private void checkForEditProducts() {
         Intent previousIntent = getIntent();
 
-        int passedProductID = previousIntent.getIntExtra( Products.PRODUCT_EDIT_EXTRA, -1 );
-        selectedProducts = Products.getProductForID( passedProductID );
+        int passedProductID = previousIntent.getIntExtra( ProductsModel.PRODUCT_EDIT_EXTRA, -1 );
+        selectedProductsModel = ProductsModel.getProductForID( passedProductID );
 
-        if (selectedProducts != null) {
-            testRun.setText( selectedProducts.getName() );
+        if (selectedProductsModel != null) {
+            testRun.setText( selectedProductsModel.getName() );
 
         }
 

@@ -10,14 +10,25 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
 import com.slfortuner.navigationdrawerpos2.fragments.ProductNavigationDrawerFragment;
 import com.slfortuner.navigationdrawerpos2.newsale.NewSaleNavigationDrawer;
+import com.slfortuner.navigationdrawerpos2.database.DataBaseHelperSummary;
+import com.slfortuner.navigationdrawerpos2.summaryList.Summary;
+import com.slfortuner.navigationdrawerpos2.models.SummaryModel;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawer;
+    private SummaryModel summaryModelSum;
+    private DataBaseHelperSummary myDB1;
+    private TextView sumText, cartBadgeTextViews, text11;
+    int quantitySum = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +37,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         Toolbar toolbar = findViewById( R.id.toolbar );
         setSupportActionBar( toolbar );
+        getSupportActionBar().setDisplayShowTitleEnabled( false );
+
+
+        RelativeLayout framew = findViewById( R.id.summaryfrag );
+        framew.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent( MainActivity.this, Summary.class );
+                startActivity( intent );
+            }
+        } );
+
 
         drawer = findViewById( R.id.drawer_layout );
         NavigationView navigationView = findViewById( R.id.navigation_view );
@@ -47,7 +70,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             navigationView.setCheckedItem( R.id.report_menu );
         }
 
+//        cartBadgeTextViews = findViewById( R.id.newgg );
+//        cartBadgeTextViews.setText( String.valueOf( myDB1.getCount() ) );
+
     }
+
 
     @Override
     public void onBackPressed() {
@@ -71,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //                startActivity( intent );
 //                break;
                 getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
-                        new NewSaleNavigationDrawer()  ).commit();
+                        new NewSaleNavigationDrawer() ).commit();
                 break;
 
             case R.id.product_menu:
@@ -85,4 +112,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         return true;
     }
+
+
+
 }

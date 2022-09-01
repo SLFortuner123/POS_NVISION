@@ -1,6 +1,5 @@
 package com.slfortuner.navigationdrawerpos2.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,8 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.slfortuner.navigationdrawerpos2.R;
-import com.slfortuner.navigationdrawerpos2.SQLManager;
-import com.slfortuner.navigationdrawerpos2.models.Products;
+import com.slfortuner.navigationdrawerpos2.database.ProductListDatabseHelper;
+import com.slfortuner.navigationdrawerpos2.models.ProductsModel;
 
 import java.util.Date;
 
@@ -24,7 +23,7 @@ public class AddAndEditProductsFragment extends Fragment {
 
     private EditText nameEditText, priceEditText, codeEditText;
     private Button deleteButton;
-    private Products selectedProducts;
+    private ProductsModel selectedProductsModel;
     private Toolbar toolbar;
 
 
@@ -48,7 +47,7 @@ public class AddAndEditProductsFragment extends Fragment {
 
 
         iniWidgets( view );
-        onStart( view );
+        onDelete( view );
         onSave( view );
         checkForEditProducts( view );
 
@@ -58,16 +57,16 @@ public class AddAndEditProductsFragment extends Fragment {
 
 
 
-    public void onStart(View view) {
+    public void onDelete(View view) {
 
         super.onStart();
         Button btns = (Button) view.findViewById( R.id.deleteBT );
         btns.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectedProducts.setDeleted( new Date() );
-                SQLManager sqlManager = SQLManager.instanceOfDatabase( getContext() );
-                sqlManager.updateProductInDB( selectedProducts );
+                selectedProductsModel.setDeleted( new Date() );
+                ProductListDatabseHelper productListDatabseHelper = ProductListDatabseHelper.instanceOfDatabase( getContext() );
+                productListDatabseHelper.updateProductInDB( selectedProductsModel );
                 getActivity().finish();
 
 //                getActivity().getSupportFragmentManager()
@@ -89,25 +88,25 @@ public class AddAndEditProductsFragment extends Fragment {
         btn.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SQLManager sqlManager = SQLManager.instanceOfDatabase( getContext() );
+                ProductListDatabseHelper productListDatabseHelper = ProductListDatabseHelper.instanceOfDatabase( getContext() );
 
                 String name = String.valueOf( nameEditText.getText() );
                 String price = String.valueOf( priceEditText.getText() );
                 String code = String.valueOf( codeEditText.getText() );
 
-                if (selectedProducts == null) {
+                if (selectedProductsModel == null) {
 
-                    int id = Products.productsArrayList.size();
-                    Products newProducts = new Products( id, name, price, code );
-                    Products.productsArrayList.add( newProducts );
-                    sqlManager.addProductsToDatabase( newProducts );
+                    int id = ProductsModel.productsModelArrayList.size();
+                    ProductsModel newProductsModel = new ProductsModel( id, name, price, code );
+                    ProductsModel.productsModelArrayList.add( newProductsModel );
+                    productListDatabseHelper.addProductsToDatabase( newProductsModel );
 
 
                 } else {
-                    selectedProducts.setName( name );
-                    selectedProducts.setPrice( price );
-                    selectedProducts.setCode( code );
-                    sqlManager.updateProductInDB( selectedProducts );
+                    selectedProductsModel.setName( name );
+                    selectedProductsModel.setPrice( price );
+                    selectedProductsModel.setCode( code );
+                    productListDatabseHelper.updateProductInDB( selectedProductsModel );
                 }
 
 
@@ -128,20 +127,20 @@ public class AddAndEditProductsFragment extends Fragment {
 
     private void checkForEditProducts(View view) {
 //        Intent previousIntent = getActivity().getIntent();
-//        int passedProductID = previousIntent.getIntExtra( Products.PRODUCT_EDIT_EXTRA, -1 );
-//        selectedProducts = Products.getProductForID( previousIntent );
+//        int passedProductID = previousIntent.getIntExtra( ProductsModel.PRODUCT_EDIT_EXTRA, -1 );
+//        selectedProductsModel = ProductsModel.getProductForID( previousIntent );
         Bundle bundle = this.getArguments();
        if (bundle != null) {
-           int id = getArguments().getInt( Products.PRODUCT_EDIT_EXTRA, -1 );
+           int id = getArguments().getInt( ProductsModel.PRODUCT_EDIT_EXTRA, -1 );
 
-//        int id = getArguments().getInt( Products.PRODUCT_EDIT_EXTRA, -1 );
-           selectedProducts = Products.getProductForID( id );
+//        int id = getArguments().getInt( ProductsModel.PRODUCT_EDIT_EXTRA, -1 );
+           selectedProductsModel = ProductsModel.getProductForID( id );
 
        }
-        if (selectedProducts != null) {
-            nameEditText.setText( selectedProducts.getName() );
-            priceEditText.setText( selectedProducts.getPrice() );
-            codeEditText.setText( selectedProducts.getCode() );
+        if (selectedProductsModel != null) {
+            nameEditText.setText( selectedProductsModel.getName() );
+            priceEditText.setText( selectedProductsModel.getPrice() );
+            codeEditText.setText( selectedProductsModel.getCode() );
         } else {
             deleteButton.setVisibility( View.INVISIBLE );
         }
@@ -150,25 +149,25 @@ public class AddAndEditProductsFragment extends Fragment {
 
     public void saveProduct(View view) {
 
-        SQLManager sqlManager = SQLManager.instanceOfDatabase( getContext() );
+        ProductListDatabseHelper productListDatabseHelper = ProductListDatabseHelper.instanceOfDatabase( getContext() );
 
         String name = String.valueOf( nameEditText.getText() );
         String price = String.valueOf( priceEditText.getText() );
         String code = String.valueOf( codeEditText.getText() );
 
-        if (selectedProducts == null) {
+        if (selectedProductsModel == null) {
 
-            int id = Products.productsArrayList.size();
-            Products newProducts = new Products( id, name, price, code );
-            Products.productsArrayList.add( newProducts );
-            sqlManager.addProductsToDatabase( newProducts );
+            int id = ProductsModel.productsModelArrayList.size();
+            ProductsModel newProductsModel = new ProductsModel( id, name, price, code );
+            ProductsModel.productsModelArrayList.add( newProductsModel );
+            productListDatabseHelper.addProductsToDatabase( newProductsModel );
 
 
         } else {
-            selectedProducts.setName( name );
-            selectedProducts.setPrice( price );
-            selectedProducts.setCode( code );
-            sqlManager.updateProductInDB( selectedProducts );
+            selectedProductsModel.setName( name );
+            selectedProductsModel.setPrice( price );
+            selectedProductsModel.setCode( code );
+            productListDatabseHelper.updateProductInDB( selectedProductsModel );
         }
 
         getActivity().finish();
@@ -177,9 +176,9 @@ public class AddAndEditProductsFragment extends Fragment {
 
 
     public void deleteProduct(View view) {
-        selectedProducts.setDeleted( new Date() );
-        SQLManager sqlManager = SQLManager.instanceOfDatabase( getContext() );
-        sqlManager.updateProductInDB( selectedProducts );
+        selectedProductsModel.setDeleted( new Date() );
+        ProductListDatabseHelper productListDatabseHelper = ProductListDatabseHelper.instanceOfDatabase( getContext() );
+        productListDatabseHelper.updateProductInDB( selectedProductsModel );
         getActivity().finish();
     }
 

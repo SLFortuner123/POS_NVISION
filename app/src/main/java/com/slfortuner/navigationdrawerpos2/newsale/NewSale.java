@@ -6,16 +6,14 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
-import com.slfortuner.navigationdrawerpos2.CartAddItems;
 import com.slfortuner.navigationdrawerpos2.R;
-import com.slfortuner.navigationdrawerpos2.SQLManager;
-import com.slfortuner.navigationdrawerpos2.Summary;
+import com.slfortuner.navigationdrawerpos2.database.ProductListDatabseHelper;
+import com.slfortuner.navigationdrawerpos2.summaryList.Summary;
 import com.slfortuner.navigationdrawerpos2.adapters.ProductAdapter;
-import com.slfortuner.navigationdrawerpos2.models.Products;
+import com.slfortuner.navigationdrawerpos2.models.ProductsModel;
 
 public class NewSale extends AppCompatActivity {
 
@@ -40,9 +38,9 @@ public class NewSale extends AppCompatActivity {
 //        productListView.setOnItemClickListener( new AdapterView.OnItemClickListener() {
 //            @Override
 //            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                Products selectedProducts = (Products) productListView.getItemAtPosition( i );
+//                ProductsModel selectedProducts = (ProductsModel) productListView.getItemAtPosition( i );
 //                Intent addProductIntent = new Intent(getApplicationContext(), CartAddItems.class);
-//                addProductIntent.putExtra( Products.PRODUCT_EDIT_EXTRA, selectedProducts.getId() );
+//                addProductIntent.putExtra( ProductsModel.PRODUCT_EDIT_EXTRA, selectedProducts.getId() );
 //                startActivity( addProductIntent );
 //
 //            }
@@ -66,14 +64,14 @@ public class NewSale extends AppCompatActivity {
     ////////////////////////////////////////////////productlist extraction from database//////////////////////////
     private void loadFromDBTomMemory(){
 
-        SQLManager sqlManager = SQLManager.instanceOfDatabase( this );
-        sqlManager.populateProductListArray();
+        ProductListDatabseHelper productListDatabseHelper = ProductListDatabseHelper.instanceOfDatabase( this );
+        productListDatabseHelper.populateProductListArray();
 
     }
 
     private void setProductAdapter()
     {
-        ProductAdapter productAdapter = new ProductAdapter( getApplicationContext(), Products.nonDeletedProducts());
+        ProductAdapter productAdapter = new ProductAdapter( getApplicationContext(), ProductsModel.nonDeletedProducts());
         productListView.setAdapter( productAdapter );
     }
 
